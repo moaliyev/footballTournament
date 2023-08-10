@@ -1,0 +1,44 @@
+{% load static %}
+<!--! ----------------------------------------------------------------------- -->
+<!--!                              START HEADER                               -->
+<!--! ----------------------------------------------------------------------- -->
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="logo">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'images/logo.jpg' %}" alt="Logo" />
+        </a>
+      </div>
+      <div class="mobileMenu" id="mobileMenu">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <nav class="navBar" id="navBar">
+        <ul class="navList">
+          <li class="navItem"><a href="{% url 'home' %}">Home</a></li>
+          <li class="navItem"><a href="{% url 'schedule' %}">Schedule</a></li>
+          <li class="navItem"><a href="#">Teams</a></li>
+          <li class="navItem">
+            <a href="{% url 'leaderboard' %}">Leaderboard</a>
+          </li>
+        </ul>
+
+        <div class="user">
+          {% if request.user.is_authenticated %}
+          <div class="profileInfo">
+            <p>Welcome, {{ request.user.username|title }}!</p>
+            <span class="balance">Balance: {{ request.user.balance }}</span>
+          </div>
+          <a href="{% url 'signOut' %}" class="signOut">Sign Out</a>
+          {% else %}
+          <a href="{% url 'signIn' %}" class="signIn">Sign In</a>
+          <a href="{% url 'signUp' %}" class="signUp">No Account? Sign Up</a>
+          {% endif %}
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--! ----------------------------------------------------------------------- -->
+<!--!                               END HEADER                                -->
+<!--! ----------------------------------------------------------------------- -->

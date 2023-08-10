@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block title %} UFAZ CL - LEADERBOARD {% endblock %}
+{%block content %}
+<!--! ----------------------------------------------------------------------- -->
+<!--!                            START LEADERBOARD                            -->
+<!--! ----------------------------------------------------------------------- -->
+<section class="leaderboard">
+  <div class="container">
+    <div class="row">
+      <h2 class="title">Leaderboard</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.balance }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!--! ----------------------------------------------------------------------- -->
+<!--!                             END LEADERBOARD                             -->
+<!--! ----------------------------------------------------------------------- -->
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'base.html' %} {% block title %} UFAZ CL - {{ match.home_team }} -
+{{match.away_team }} {% endblock %} {%block content %}
+<!--! ----------------------------------------------------------------------- -->
+<!--!                               START MATCH                               -->
+<!--! ----------------------------------------------------------------------- -->
+<section class="match">
+  <div class="container">
+    <div class="row">
+      <h2 class="title">Match Info</h2>
+      <div class="box">
+        {% if match.finished %}
+        <div class="card">
+          {% if match.home_score > match.away_score %}
+          <div class="teams">
+            <span class="homeTeam">{{ match.home_team }}</span>
+            <span class="score"
+              >{{ match.home_score }} -
+              <span class="loser">{{ match.away_score }}</span></span
+            >
+            <span class="awayTeam loser">{{ match.away_team }}</span>
+          </div>
+          <div class="coefficients">
+            <span class="homeTeam">{{ match.home_coefficient }}</span>
+            <span class="awayTeam">{{ match.away_coefficient }}</span>
+          </div>
+          {% elif match.home_score < match.away_score %}
+          <div class="teams">
+            <span class="homeTeam loser">{{ match.home_team }}</span>
+            <span class="score"
+              ><span class="loser"> {{ match.home_score }} </span> -
+              {{match.away_score }}</span
+            >
+            <span class="awayTeam">{{ match.away_team }}</span>
+          </div>
+          <div class="coefficients">
+            <span class="homeTeam">{{ match.home_coefficient }}</span>
+            <span class="awayTeam">{{ match.away_coefficient }}</span>
+          </div>
+          {% else %}
+          <div class="teams">
+            <span class="homeTeam">{{ match.home_team }}</span>
+            <span class="score"
+              >{{ match.home_score }} - {{ match.away_score }}</span
+            >
+            <span class="awayTeam">{{ match.away_team }}</span>
+          </div>
+          <div class="coefficients">
+            <span class="homeTeam">{{ match.home_coefficient }}</span>
+            <span class="awayTeam">{{ match.away_coefficient }}</span>
+          </div>
+          {% endif %}
+        </div>
+        {% else %}
+        <div class="card">
+          <div class="teams">
+            <span class="homeTeam">{{ match.home_team }}</span>
+            <span class="score"
+              >{{ match.date|date:"H:i" }} <br />
+              {{ match.date|date:"M d" }}</span
+            >
+            <span class="awayTeam">{{ match.away_team }}</span>
+          </div>
+          <div class="coefficients">
+            <span class="homeTeam">{{ match.home_coefficient }}</span>
+            <span class="awayTeam">{{ match.away_coefficient }}</span>
+          </div>
+        </div>
+        <div class="betContainer">
+          {% if messages %} {% for message in messages %}
+          <p class="error">{{ message }}</p>
+          {% endfor %} {% endif %}
+          <form method="post" class="form">
+            {% csrf_token %}
+            <input
+              type="number"
+              name="amount"
+              id="amount"
+              class="amount"
+              placeholder="bet here..."
+              required
+            />
+            <div class="design">
+              <div class="pane">
+                <label class="label">
+                  <span>{{ match.home_team }}</span>
+                  <input
+                    id="left"
+                    class="input"
+                    name="radio"
+                    type="radio"
+                    checked="checked"
+                    value="1"
+                  />
+                </label>
+                <label class="label">
+                  <span>X</span>
+                  <input
+                    disabled
+                    id="middle"
+                    class="input"
+                    name="radio"
+                    type="radio"
+                    value="X"
+                  />
+                </label>
+                <label class="label">
+                  <span>{{ match.away_team }}</span>
+                  <input
+                    id="right"
+                    class="input"
+                    name="radio"
+                    type="radio"
+                    value="2"
+                  />
+                </label>
+                <span class="selection"></span>
+              </div>
+            </div>
+            <button type="submit">Bet</button>
+          </form>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+<!--! ----------------------------------------------------------------------- -->
+<!--!                                END MATCH                                -->
+<!--! ----------------------------------------------------------------------- -->
+{% endblock %}

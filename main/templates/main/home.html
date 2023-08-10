@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% block title %} UFAZ CL - HOME {% endblock %}
+{%block content %}
+<!--! ----------------------------------------------------------------------- -->
+<!--!                             START SCHEDULE                              -->
+<!--! ----------------------------------------------------------------------- -->
+<section class="home">
+  <div class="container">
+    <div class="row">
+      {% if upcomingMatches %}
+      <h2 class="title">Upcoming matches</h2>
+      <div class="cardBox">
+        {% for match in upcomingMatches %}
+        <div class="card" onclick="location.href=`{% url 'match' match.id %}`">
+          <div class="dateTime">
+            <span class="date">{{ match.date|date:"M d" }} </span>
+            <span class="time"> {{ match.date|date:"H:i" }} </span>
+          </div>
+          <div class="teams">
+            <div class="teamNames">
+              {% if match.home_score > match.away_score %}
+              <span class="homeTeam">{{ match.home_team }}</span>
+              <span class="awayTeam loser">{{ match.away_team }}</span>
+              {% elif match.home_score < match.away_score %}
+              <span class="homeTeam loser">{{ match.home_team }}</span>
+              <span class="awayTeam">{{ match.away_team }}</span>
+              {% else %}
+              <span class="homeTeam">{{ match.home_team }}</span>
+              <span class="awayTeam">{{ match.away_team }}</span>
+              {% endif %}
+            </div>
+            <div class="teamScore">
+              {% if match.home_score > match.away_score %}
+              <span class="homeTeam">{{ match.home_score }}</span>
+              <span class="awayTeam loser">{{ match.away_score }}</span>
+              {% elif match.home_score < match.away_score %}
+              <span class="homeTeam loser">{{ match.home_score }}</span>
+              <span class="awayTeam">{{ match.away_score }}</span>
+              {% else %}
+              <span class="homeTeam">{{ match.home_score }}</span>
+              <span class="awayTeam">{{ match.away_score }}</span>
+              {% endif %}
+            </div>
+          </div>
+          <div class="coefficients">
+            <span class="homeCoefficient">{{ match.home_coefficient }}</span>
+            <span class="awayCoefficient">{{ match.away_coefficient }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% if results %}
+      <h2 class="title">Results</h2>
+      <div class="cardBox">
+        {% for match in results %}
+        <div class="card" onclick="location.href=`{% url 'match' match.id %}`">
+          <div class="dateTime">
+            <span class="date">{{ match.date|date:"M d" }} </span>
+            <span class="time"> {{ match.date|date:"H:i" }} </span>
+          </div>
+          <div class="teams">
+            <div class="teamNames">
+              {% if match.home_score > match.away_score %}
+              <span class="homeTeam">{{ match.home_team }}</span>
+              <span class="awayTeam loser">{{ match.away_team }}</span>
+              {% elif match.home_score < match.away_score %}
+              <span class="homeTeam loser">{{ match.home_team }}</span>
+              <span class="awayTeam">{{ match.away_team }}</span>
+              {% else %}
+              <span class="homeTeam">{{ match.home_team }}</span>
+              <span class="awayTeam">{{ match.away_team }}</span>
+              {% endif %}
+            </div>
+            <div class="teamScore">
+              {% if match.home_score > match.away_score %}
+              <span class="homeTeam">{{ match.home_score }}</span>
+              <span class="awayTeam loser">{{ match.away_score }}</span>
+              {% elif match.home_score < match.away_score %}
+              <span class="homeTeam loser">{{ match.home_score }}</span>
+              <span class="awayTeam">{{ match.away_score }}</span>
+              {% else %}
+              <span class="homeTeam">{{ match.home_score }}</span>
+              <span class="awayTeam">{{ match.away_score }}</span>
+              {% endif %}
+            </div>
+          </div>
+          <div class="coefficients">
+            <span class="homeCoefficient">{{ match.home_coefficient }}</span>
+            <span class="awayCoefficient">{{ match.away_coefficient }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+<!--! ----------------------------------------------------------------------- -->
+<!--!                              END SCHEDULE                               -->
+<!--! ----------------------------------------------------------------------- -->
+{% endblock %}

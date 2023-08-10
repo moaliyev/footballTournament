@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% block title %} UFAZ CL - SIGN UP {% endblock %}
+{%block content %}
+<!--! ----------------------------------------------------------------------- -->
+<!--!                              START SIGN UP                              -->
+<!--! ----------------------------------------------------------------------- -->
+<section class="signUp">
+  <h2>Sign Up</h2>
+  <div class="container">
+    <div class="row">
+      <form method="post" class="form">
+        {% if error != "" %}
+        <p class="error">{{error}}</p>
+        {% endif %} {% csrf_token %}
+        <div class="inputContainer">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="username..."
+            required
+          />
+        </div>
+        <div class="inputContainer">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="password..."
+            required
+          />
+        </div>
+        <div class="inputContainer">
+          <label for="password2">Password (again)</label>
+          <input
+            type="password"
+            name="password2"
+            id="password2"
+            placeholder="password (again)..."
+            required
+          />
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</section>
+<!--! ----------------------------------------------------------------------- -->
+<!--!                               END SIGN UP                               -->
+<!--! ----------------------------------------------------------------------- -->
+{% endblock %}

@@ -1,0 +1,16 @@
+// Variables
+@import "./variables";
+
+// Globals
+@import "./base";
+
+// Components
+@import "./components/header";
+@import "./components/footer";
+
+// Pages
+@import "./pages/home";
+@import "./pages/signUp";
+@import "./pages/match";
+@import "./pages/leaderboard";
+@import "./pages/schedule";

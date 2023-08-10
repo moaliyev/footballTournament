@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% load main_extras %} {% block title %} UFAZ CL -
+SCHEDULE {% endblock %} {%block content %}
+<!--! ----------------------------------------------------------------------- -->
+<!--!                             START SCHEDULE                              -->
+<!--! ----------------------------------------------------------------------- -->
+<section class="groups">
+  <div class="container">
+    <div class="row">
+      <h2 class="title">Group Stage</h2>
+      <div class="box">
+        {% for group in groups %}
+        <div class="group">
+          <h2 class="title">Group {{ group.name }}</h2>
+          <div class="tableContainer">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Team</th>
+                  <th>GP</th>
+                  <th>W</th>
+                  <th>D</th>
+                  <th>L</th>
+                  <th>P</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for team in teams|filterByCategory:group %}
+                <tr>
+                  {% if forloop.counter < 3 %}
+                  <td class="promote">{{ forloop.counter }}</td>
+                  {% else %}
+                  <td>{{ forloop.counter }}</td>
+                  {% endif %}
+                  <td>{{ team.name }}</td>
+                  <td>{{ team.wins|add:team.loses|add:team.draws }}</td>
+                  <td>{{ team.wins }}</td>
+                  <td>{{ team.draws }}</td>
+                  <td>{{ team.loses }}</td>
+                  <td>{{ team.points }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<!--! ----------------------------------------------------------------------- -->
+<!--!                              END SCHEDULE                               -->
+<!--! ----------------------------------------------------------------------- -->
+{% endblock %}

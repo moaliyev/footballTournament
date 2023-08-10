@@ -1,0 +1,78 @@
+@import "../mixins";
+.signUp {
+  width: 100%;
+  height: 100%;
+  padding-top: 50px;
+  h2 {
+    @include title();
+  }
+  .container {
+    .row {
+      flex-direction: column;
+      align-items: center;
+      .form {
+        .error {
+          font-family: "Blinker", sans-serif;
+          letter-spacing: 1.2px;
+          font-size: 18px;
+          text-align: center;
+          color: #cf2116;
+          margin-bottom: 15px;
+        }
+        border-radius: 10px;
+        padding: 20px 35px;
+        background-color: $lightBlueClr;
+        height: 100%;
+        width: 40%;
+        .inputContainer {
+          display: flex;
+          margin-bottom: 25px;
+          flex-direction: column;
+          label {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: $whiteClr;
+          }
+          input {
+            color: rgba(255, 255, 255, 0.8);
+            outline: 0;
+            border-radius: 5px;
+            border: 0;
+            font-size: 16px;
+            padding: 5px 10px;
+            background-color: #1c2632;
+          }
+        }
+        button {
+          width: 100%;
+          @include primaryBtn();
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .signUp {
+    .container {
+      .row {
+        .form {
+          width: 60%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .signUp {
+    padding-top: 20px;
+    .container {
+      .row {
+        .form {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

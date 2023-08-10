@@ -1,0 +1,1 @@
+const mobileMenu=document.getElementById("mobileMenu"),navBar=document.getElementById("navBar");mobileMenu.addEventListener("click",()=>{navBar.classList.toggle("toggle")});
